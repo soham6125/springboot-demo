@@ -33,7 +33,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable Integer id) {
+    public ResponseEntity<Student> getStudent(@PathVariable("id") Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(studentService.getStudentByID(id));
     }
 
@@ -57,7 +57,12 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Student> deleteStudent(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<Student> deleteStudent(@PathVariable("id") Integer id) throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(studentService.deleteStudentByID(id));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable("id") Long id, @Valid @RequestBody Student student) {
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.editStudent(id, student));
     }
 }

@@ -23,10 +23,8 @@ public class StudentController {
     }
 
     @GetMapping("/health")
-    public Dictionary hello() {
-        Dictionary res = new Hashtable();
-        res.put("message", "Health Check");
-        return res;
+    public ResponseEntity<Map<String, String>> health() {
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.healthCheck());
     }
 
     @GetMapping("/all")

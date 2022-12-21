@@ -9,8 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static java.time.Period.between;
 
@@ -22,6 +21,12 @@ public class StudentService {
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
+    }
+
+    public Map<String, String> healthCheck() {
+        Map<String, String> res = new HashMap<>();
+        res.put("message", "Health Check Successful");
+        return res;
     }
 
     public List<Student> getAllStudents() {
